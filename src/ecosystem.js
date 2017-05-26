@@ -16,10 +16,10 @@ class Ecosystem extends Component {
 	}
 
 	onNet(e) {
-		let radius = 150;
+		let radius = 200;
 		let netArea = { x1: e.clientX - radius, x2: e.clientX + radius,
 			  y1: e.clientY - radius, y2: e.clientY + radius };
-			  
+
 		this.props.removeFishInRadius(netArea);
 	}
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/Users/brandonfujii/Documents/marine-react/assets";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 90);
@@ -9841,8 +9841,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var END_TIME_SECONDS = 5;
-var DOUBLING_RATE = 30;
+var END_TIME_SECONDS = 20;
+var DOUBLING_RATE = 5;
 
 var Game = function (_Component) {
 	_inherits(Game, _Component);
@@ -9888,6 +9888,7 @@ var Game = function (_Component) {
 	}, {
 		key: 'onGameTick',
 		value: function onGameTick(tick) {
+			console.log(tick);
 			this.setState({
 				time: tick
 			}, function () {
@@ -9910,7 +9911,7 @@ var Game = function (_Component) {
 		value: function reproduce(numFish) {
 			var updatedFish = [];
 
-			for (var i = 0; i < numFish || this.state.fish.length; i++) {
+			for (var i = 0; i < (numFish || this.state.fish.length); i++) {
 				var f = this.generateFish();
 				updatedFish.push(f);
 			}
@@ -9952,7 +9953,7 @@ var Game = function (_Component) {
 				{ style: { width: '100%', height: '100%' } },
 				_react2.default.createElement(
 					'div',
-					{ className: 'game-time' },
+					{ id: 'game-time' },
 					this.state.time
 				),
 				_react2.default.createElement(_ecosystem2.default, { fish: this.state.fish,
@@ -10028,7 +10029,7 @@ var Ecosystem = function (_Component) {
 	}, {
 		key: 'onNet',
 		value: function onNet(e) {
-			var radius = 150;
+			var radius = 200;
 			var netArea = { x1: e.clientX - radius, x2: e.clientX + radius,
 				y1: e.clientY - radius, y2: e.clientY + radius };
 
@@ -10081,10 +10082,20 @@ var Fish = function (_Component) {
 	function Fish(props) {
 		_classCallCheck(this, Fish);
 
-		return _possibleConstructorReturn(this, (Fish.__proto__ || Object.getPrototypeOf(Fish)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Fish.__proto__ || Object.getPrototypeOf(Fish)).call(this, props));
+
+		_this.state = {
+			movement: setInterval(_this.randomMovement, 500)
+		};
+
+		_this.randomMovement = _this.randomMovement.bind(_this);
+		return _this;
 	}
 
 	_createClass(Fish, [{
+		key: 'randomMovement',
+		value: function randomMovement() {}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
@@ -10095,9 +10106,9 @@ var Fish = function (_Component) {
 
 			return _react2.default.createElement(
 				'div',
-				{ className: 'fish-' + index,
+				{ className: 'fish-' + index + ' clearfix',
 					style: { position: 'absolute', top: y, left: x } },
-				'fish'
+				_react2.default.createElement('img', { src: 'assets/clownfish.png' })
 			);
 		}
 	}]);

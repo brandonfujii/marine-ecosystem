@@ -14,6 +14,7 @@ var config = {
   },
   output: {
     path: path.resolve(__dirname, DIST_PATH),
+    publicPath: path.resolve(__dirname, "assets/"),
     filename: '[name].entry.js'
   },
   module: {
@@ -30,6 +31,10 @@ var config = {
         test: [/\.sass$/],
         loaders: ["style-loader", "css-loader", "sass-loader"],
         include: SRC_PATH
+      },
+      {
+        test: /\.(woff2?|jpe?g|png|gif|ico)$/, 
+        use: 'file-loader?name=./assets/[name].[ext]' 
       }
     ]
   }

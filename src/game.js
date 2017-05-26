@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Ecosystem from './ecosystem';
 import Time from './time';
 
-const END_TIME_SECONDS = 5;
-const DOUBLING_RATE = 30;
+const END_TIME_SECONDS = 20;
+const DOUBLING_RATE = 5;
 
 class Game extends Component {
 	constructor(props) {
@@ -40,6 +40,7 @@ class Game extends Component {
 	}
 
 	onGameTick(tick) {
+		console.log(tick);
 		this.setState({
 			time: tick,
 		}, function()  {
@@ -60,7 +61,7 @@ class Game extends Component {
 	reproduce(numFish) {
 		let updatedFish = [];
 
-		for (let i = 0; i < numFish || this.state.fish.length; i++) {
+		for (let i = 0; i < (numFish || this.state.fish.length); i++) {
 			let f = this.generateFish();
 			updatedFish.push(f);
 		}
@@ -92,7 +93,7 @@ class Game extends Component {
 	render() {
 		return (
 			<div style={{ width: '100%', height: '100%' }}>
-				<div className="game-time">{ this.state.time }</div>
+				<div id="game-time">{ this.state.time }</div>
 				<Ecosystem fish={this.state.fish}
 					removeFishInRadius={this.removeFishInRadius} />
 			</div>
