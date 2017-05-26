@@ -3,16 +3,6 @@ import React, { Component } from 'react';
 class Fish extends Component {
 	constructor(props) {
 		super(props); 
-
-		this.state = {
-			movement: setInterval(this.randomMovement, 500)
-		}
-
-		this.randomMovement = this.randomMovement.bind(this);
-	}
-
-	randomMovement() {
-		// Perform random movement for fish
 	}
 
 	render() {

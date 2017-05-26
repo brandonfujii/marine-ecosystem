@@ -11,16 +11,23 @@ html, body, #app, #ecosystem {
 	padding: 0;
 }
 
-div[class*=fish-] > img {
+div[class*=fish-] {
 	height: 100px;
+	animation: swim infinite 2s alternate;
+}
+
+div[class*=fish-] > img {
 	width: auto;
+	height: 100px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-	position: absolute;
-	animation-name: swim;
-	animation-duration: 3000ms;
-	animation-delay: -3000ms;
+}
+
+@keyframes swim
+{
+	from { transform: rotate(0deg)   translateY(-1em) rotate(0deg); }
+	to   { transform: rotate(360deg) translateY(-1em) rotate(-360deg); }
 }
 
 #game-time {
@@ -126,31 +133,31 @@ body {
 
 @keyframes wave_1
 {
-	from { transform: rotate(0deg)   translatey(-0.61em) rotate(0deg)    ; }
-	to   { transform: rotate(360deg) translatey(-0.61em) rotate(-360deg) ; }
+	from { transform: rotate(0deg)   translateY(-0.61em) rotate(0deg)    ; }
+	to   { transform: rotate(360deg) translateY(-0.61em) rotate(-360deg) ; }
 }
 
 @keyframes wave_2
 {
-	from { transform: rotate(0deg)   translatey(-0.77em) rotate(0deg)    ; }
-	to   { transform: rotate(360deg) translatey(-0.77em) rotate(-360deg) ; }
+	from { transform: rotate(0deg)   translateY(-0.77em) rotate(0deg)    ; }
+	to   { transform: rotate(360deg) translateY(-0.77em) rotate(-360deg) ; }
 }
 
 @keyframes wave_3
 {
-	from { transform: rotate(0deg)   translatey(-0.96em) rotate(0deg)    ; }
-	to   { transform: rotate(360deg) translatey(-0.96em) rotate(-360deg) ; }
+	from { transform: rotate(0deg)   translateY(-0.96em) rotate(0deg)    ; }
+	to   { transform: rotate(360deg) translateY(-0.96em) rotate(-360deg) ; }
 }
 
 @keyframes wave_4
 {
-	from { transform: rotate(0deg)   translatey(-1.2em) rotate(0deg)    ; }
-	to   { transform: rotate(360deg) translatey(-1.2em) rotate(-360deg) ; }
+	from { transform: rotate(0deg)   translateY(-1.2em) rotate(0deg)    ; }
+	to   { transform: rotate(360deg) translateY(-1.2em) rotate(-360deg) ; }
 }
 
 @keyframes wave_5
 {
-	from { transform: rotate(0deg)   translatey(-1.5em) rotate(0deg)    ; }
-	to   { transform: rotate(360deg) translatey(-1.5em) rotate(-360deg) ; }
+	from { transform: rotate(0deg)   translateY(-1.5em) rotate(0deg)    ; }
+	to   { transform: rotate(360deg) translateY(-1.5em) rotate(-360deg) ; }
 }
 
