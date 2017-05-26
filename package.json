@@ -1,0 +1,29 @@
+{
+  "name": "overfishing-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node_modules/.bin/webpack-dev-server"
+  },
+  "author": "Brandon Fujii <brandonkfujii@gmail.com> (http://brandonfujii.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "css-loader": "0.28.3",
+    "moment": "2.18.1",
+    "path": "0.12.7",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
+    "sass-loader": "6.0.5",
+    "style-loader": "0.18.1",
+    "webpack": "2.6.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.4.5"
+  }
+}
