@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Ecosystem from './ecosystem';
 import Time from './time';
 
-const END_TIME_SECONDS = 300;
+const END_TIME_SECONDS = 5;
 const DOUBLING_RATE = 30;
 
 class Game extends Component {
@@ -13,13 +13,7 @@ class Game extends Component {
 			gameTime: null,
 			time: null,
 			score: null,
-			fish: [
-				{ x:  100, y: 100 },
-				{ x:  150, y: 207 },
-				{ x:  75, y: 39 },
-				{ x:  54, y: 100 },
-				{ x:  110, y: 1500 }
-			]
+			fish: []
 		};
 
 		this.initializeGame = this.initializeGame.bind(this);
@@ -27,6 +21,7 @@ class Game extends Component {
 		this.onGameOver = this.onGameOver.bind(this);
 		this.reproduce = this.reproduce.bind(this);
 		this.generateFish = this.generateFish.bind(this);
+		this.removeFishInRadius = this.removeFishInRadius.bind(this);
 	}
 
 	componentDidMount() {
@@ -40,6 +35,7 @@ class Game extends Component {
 			score: 0,
 		}, function() {
 			this.state.gameTime.start();
+			this.reproduce(5);
 		});
 	}
 
@@ -61,11 +57,10 @@ class Game extends Component {
 		});
 	}
 
-	reproduce() {
-		let numFish = this.state.fish.length;
+	reproduce(numFish) {
 		let updatedFish = [];
 
-		for (let i = 0; i < numFish; i++) {
+		for (let i = 0; i < numFish || this.state.fish.length; i++) {
 			let f = this.generateFish();
 			updatedFish.push(f);
 		}
@@ -79,11 +74,27 @@ class Game extends Component {
 		return { x: Math.floor(Math.random() * window.innerWidth + 1), y: Math.floor(Math.random() * window.innerHeight + 1) };
 	}
 
+	removeFishInRadius(netArea) {
+		let { x1, x2, y1, y2 } = netArea;
+		let fish = this.state.fish.slice();
+
+		for (let i = 0; i < fish.length; i++) {
+			let f = fish[i];
+			if (f.x >= x1 && f.x <= x2 && f.y >= y1 && f.y <= y2) {
+				fish.splice(i, 1);
+				i--;
+			}
+		}
+
+		this.setState({ fish });
+	}
+
 	render() {
 		return (
 			<div style={{ width: '100%', height: '100%' }}>
 				<div className="game-time">{ this.state.time }</div>
-				<Ecosystem fish={this.state.fish} />
+				<Ecosystem fish={this.state.fish}
+					removeFishInRadius={this.removeFishInRadius} />
 			</div>
 		);
 	}

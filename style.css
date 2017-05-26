@@ -1,4 +1,12 @@
-html, body, #app {
+.clearfix,
+.clearfix:before,
+.clearfix:after {
+	clear: both;
+	display: table;
+	content: "";
+}
+
+html, body, #app, #ecosystem {
 	height: 100%;
 	width: 100%;
 	margin: 0;
