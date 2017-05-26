@@ -12,7 +12,7 @@ class Fish extends Component {
 	}
 
 	randomMovement() {
-
+		// Perform random movement for fish
 	}
 
 	render() {

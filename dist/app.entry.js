@@ -10094,7 +10094,9 @@ var Fish = function (_Component) {
 
 	_createClass(Fish, [{
 		key: 'randomMovement',
-		value: function randomMovement() {}
+		value: function randomMovement() {
+			// Perform random movement for fish
+		}
 	}, {
 		key: 'render',
 		value: function render() {
