@@ -9,16 +9,19 @@ html, body, #app, #ecosystem {
   margin: 0;
   padding: 0; }
 
+html {
+  font-family: 'helvetica'; }
+
 div[class*=fish-] {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  height: 100px;
+  height: 7%;
   animation: swim infinite 2s alternate; }
 
 div[class*=fish-] > img {
   width: auto;
-  height: 100px;
+  height: 100%;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
@@ -28,6 +31,10 @@ div[class*=fish-] > img {
     transform: rotate(0deg) translateY(-1em) rotate(0deg); }
   to {
     transform: rotate(360deg) translateY(-1em) rotate(-360deg); } }
+#top-bar {
+  width: 100%;
+  position: absolute; }
+
 #game-time-container {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -46,8 +53,61 @@ div[class*=fish-] > img {
     font-size: 40px;
     color: #555;
     font-weight: 700;
-    font-family: 'helvetica';
     top: -72px; }
+
+#game-score {
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  right: 50px;
+  top: 20px;
+  position: absolute; }
+
+#sidebar {
+  position: absolute;
+  height: 100%;
+  width: 160px; }
+
+#sustainability-meter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  overflow: hidden; }
+  #sustainability-meter #meter-color {
+    width: 600px;
+    height: 100%;
+    position: relative;
+    left: -270px;
+    background: #2ebc23;
+    /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #2ebc23 7%, #d2dd2c 30%, #dd2c2c 62%);
+    /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #2ebc23 7%, #d2dd2c 30%, #dd2c2c 62%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #2ebc23 7%, #d2dd2c 30%, #dd2c2c 62%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ebc23', endColorstr='#dd2c2c',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */ }
+
+#indicator {
+  position: relative;
+  width: 95px;
+  height: auto;
+  left: 65px;
+  -webkit-transition: all 1.3s ease-in-out;
+  -moz-transition: all 1.3s ease-in-out;
+  transition: all 1.3s ease-in-out; }
+  #indicator img {
+    width: 45px;
+    height: 100%; }
+  #indicator #points {
+    position: relative;
+    top: -4px;
+    margin-left: 5px;
+    color: #fff;
+    display: inline-block; }
 
 /* Underwater effect - Nick Pearson */
 body {
