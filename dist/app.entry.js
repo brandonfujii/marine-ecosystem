@@ -9841,8 +9841,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var END_TIME_SECONDS = 20;
-var DOUBLING_RATE = 5;
+var END_TIME_SECONDS = 80;
+var DOUBLING_RATE = 40;
 
 var Game = function (_Component) {
 	_inherits(Game, _Component);
@@ -9865,6 +9865,7 @@ var Game = function (_Component) {
 		_this.reproduce = _this.reproduce.bind(_this);
 		_this.generateFish = _this.generateFish.bind(_this);
 		_this.removeFishInRadius = _this.removeFishInRadius.bind(_this);
+		_this.renderGameTime = _this.renderGameTime.bind(_this);
 		return _this;
 	}
 
@@ -9946,6 +9947,13 @@ var Game = function (_Component) {
 			this.setState({ fish: fish });
 		}
 	}, {
+		key: 'renderGameTime',
+		value: function renderGameTime(num) {
+			var minutes = Math.floor(num / 60);
+			var seconds = num % 60;
+			return minutes + ':' + ((seconds <= 9 ? '0' : '') + seconds);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
@@ -9953,8 +9961,13 @@ var Game = function (_Component) {
 				{ style: { width: '100%', height: '100%' } },
 				_react2.default.createElement(
 					'div',
-					{ id: 'game-time' },
-					this.state.time
+					{ id: 'game-time-container' },
+					_react2.default.createElement('img', { id: 'shell-icon', src: 'assets/shell.png' }),
+					_react2.default.createElement(
+						'div',
+						{ id: 'game-time' },
+						this.renderGameTime(this.state.time)
+					)
 				),
 				_react2.default.createElement(_ecosystem2.default, { fish: this.state.fish,
 					removeFishInRadius: this.removeFishInRadius })
@@ -10082,22 +10095,10 @@ var Fish = function (_Component) {
 	function Fish(props) {
 		_classCallCheck(this, Fish);
 
-		var _this = _possibleConstructorReturn(this, (Fish.__proto__ || Object.getPrototypeOf(Fish)).call(this, props));
-
-		_this.state = {
-			movement: setInterval(_this.randomMovement, 500)
-		};
-
-		_this.randomMovement = _this.randomMovement.bind(_this);
-		return _this;
+		return _possibleConstructorReturn(this, (Fish.__proto__ || Object.getPrototypeOf(Fish)).call(this, props));
 	}
 
 	_createClass(Fish, [{
-		key: 'randomMovement',
-		value: function randomMovement() {
-			// Perform random movement for fish
-		}
-	}, {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,

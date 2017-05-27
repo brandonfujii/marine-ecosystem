@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Ecosystem from './ecosystem';
 import Time from './time';
 
-const END_TIME_SECONDS = 20;
-const DOUBLING_RATE = 5;
+const END_TIME_SECONDS = 80;
+const DOUBLING_RATE = 40;
 
 class Game extends Component {
 	constructor(props) {
@@ -22,6 +22,7 @@ class Game extends Component {
 		this.reproduce = this.reproduce.bind(this);
 		this.generateFish = this.generateFish.bind(this);
 		this.removeFishInRadius = this.removeFishInRadius.bind(this);
+		this.renderGameTime = this.renderGameTime.bind(this);
 	}
 
 	componentDidMount() {
@@ -90,10 +91,19 @@ class Game extends Component {
 		this.setState({ fish });
 	}
 
+	renderGameTime(num) {
+		let minutes = Math.floor(num / 60);
+		let seconds = num % 60;
+		return `${minutes}:${(seconds <= 9 ? '0' : '') + seconds}`;
+	}
+
 	render() {
 		return (
 			<div style={{ width: '100%', height: '100%' }}>
-				<div id="game-time">{ this.state.time }</div>
+				<div id="game-time-container">
+					<img id="shell-icon" src="assets/shell.png" />
+					<div id="game-time">{ this.renderGameTime(this.state.time) }</div>
+				</div>
 				<Ecosystem fish={this.state.fish}
 					removeFishInRadius={this.removeFishInRadius} />
 			</div>

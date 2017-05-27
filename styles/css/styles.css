@@ -11,6 +11,9 @@ html, body, #app, #ecosystem {
 
 div[class*=fish-] {
   height: 100px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   animation: swim infinite 2s alternate; }
 
 div[class*=fish-] > img {
@@ -25,15 +28,23 @@ div[class*=fish-] > img {
     transform: rotate(0deg) translateY(-1em) rotate(0deg); }
   to {
     transform: rotate(360deg) translateY(-1em) rotate(-360deg); } }
-#game-time {
+#game-time-container {
   position: absolute;
-  font-size: 48px;
-  color: #fff;
-  font-family: 'helvetica';
   width: 100%;
-  padding: 5px 0;
   text-align: center;
+  padding: 5px 0;
   z-index: 1000; }
+  #game-time-container #shell-icon {
+    width: 100px;
+    height: auto;
+    margin: 0 auto; }
+  #game-time-container #game-time {
+    position: relative;
+    font-size: 40px;
+    color: #555;
+    font-weight: 700;
+    font-family: 'helvetica';
+    top: -72px; }
 
 /* Underwater effect - Nick Pearson */
 body {
