@@ -25,7 +25,7 @@ class Ecosystem extends Component {
 
 	render() {
 		return (
-			<div id="ecosystem" className="clearfix" onClick={this.onNet} >
+			<div id="ecosystem" className="clearfix" onClick={this.onNet}>
 				{ this.renderFish(this.props.fish) }
 			</div>
 		);

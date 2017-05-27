@@ -10,10 +10,10 @@ html, body, #app, #ecosystem {
   padding: 0; }
 
 div[class*=fish-] {
-  height: 100px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+  height: 100px;
   animation: swim infinite 2s alternate; }
 
 div[class*=fish-] > img {
@@ -29,10 +29,13 @@ div[class*=fish-] > img {
   to {
     transform: rotate(360deg) translateY(-1em) rotate(-360deg); } }
 #game-time-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   position: absolute;
   width: 100%;
   text-align: center;
-  padding: 5px 0;
+  padding-top: 5px;
   z-index: 1000; }
   #game-time-container #shell-icon {
     width: 100px;

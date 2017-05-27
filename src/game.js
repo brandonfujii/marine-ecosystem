@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Ecosystem from './ecosystem';
 import Time from './time';
+import rand from './rand';
 
 const END_TIME_SECONDS = 80;
 const DOUBLING_RATE = 40;
+const ARENA_OFFSET = 200;
 
 class Game extends Component {
 	constructor(props) {
@@ -41,7 +43,6 @@ class Game extends Component {
 	}
 
 	onGameTick(tick) {
-		console.log(tick);
 		this.setState({
 			time: tick,
 		}, function()  {
@@ -73,7 +74,8 @@ class Game extends Component {
 	}
 
 	generateFish() {
-		return { x: Math.floor(Math.random() * window.innerWidth + 1), y: Math.floor(Math.random() * window.innerHeight + 1) };
+		console.log(window.innerWidth);
+		return { x: rand.choice(ARENA_OFFSET, window.innerWidth - ARENA_OFFSET), y: rand.choice(150, window.innerHeight - ARENA_OFFSET) };
 	}
 
 	removeFishInRadius(netArea) {

@@ -11,11 +11,15 @@ html, body, #app, #ecosystem {
 	padding: 0;
 }
 
-div[class*=fish-] {
-	height: 100px;
+@mixin no-select {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
+}
+
+div[class*=fish-] {
+	@include no-select;
+	height: 100px;
 	animation: swim infinite 2s alternate;
 }
 
@@ -34,10 +38,12 @@ div[class*=fish-] > img {
 }
 
 #game-time-container {
+	@include no-select;
+
 	position: absolute;
 	width: 100%;
 	text-align: center;
-	padding: 5px 0;
+	padding-top: 5px;
 	z-index: 1000;
 
 	#shell-icon {

@@ -9833,6 +9833,10 @@ var _time = __webpack_require__(91);
 
 var _time2 = _interopRequireDefault(_time);
 
+var _rand = __webpack_require__(195);
+
+var _rand2 = _interopRequireDefault(_rand);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9843,6 +9847,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var END_TIME_SECONDS = 80;
 var DOUBLING_RATE = 40;
+var ARENA_OFFSET = 200;
 
 var Game = function (_Component) {
 	_inherits(Game, _Component);
@@ -9889,7 +9894,6 @@ var Game = function (_Component) {
 	}, {
 		key: 'onGameTick',
 		value: function onGameTick(tick) {
-			console.log(tick);
 			this.setState({
 				time: tick
 			}, function () {
@@ -9924,7 +9928,8 @@ var Game = function (_Component) {
 	}, {
 		key: 'generateFish',
 		value: function generateFish() {
-			return { x: Math.floor(Math.random() * window.innerWidth + 1), y: Math.floor(Math.random() * window.innerHeight + 1) };
+			console.log(window.innerWidth);
+			return { x: _rand2.default.choice(ARENA_OFFSET, window.innerWidth - ARENA_OFFSET), y: _rand2.default.choice(150, window.innerHeight - ARENA_OFFSET) };
 		}
 	}, {
 		key: 'removeFishInRadius',
@@ -23342,6 +23347,27 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 };
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+function choice(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var rand = {
+	choice: choice
+};
+
+exports.default = rand;
 
 /***/ })
 /******/ ]);
