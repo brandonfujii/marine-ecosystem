@@ -19,6 +19,7 @@
     "gaussian": "1.1.0",
     "moment": "2.18.1",
     "path": "0.12.7",
+    "prop-types": "15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "sass-loader": "6.0.5",

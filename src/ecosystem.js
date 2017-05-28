@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Fish from './fish';
 
 class Ecosystem extends Component {
@@ -16,11 +17,11 @@ class Ecosystem extends Component {
 	}
 
 	onNet(e) {
-		let radius = 200;
+		let radius = this.props.netRadius;
 		let netArea = { x1: e.clientX - radius, x2: e.clientX + radius,
 			  y1: e.clientY - radius, y2: e.clientY + radius };
 
-		this.props.removeFishInRadius(netArea);
+		this.props.onNet(netArea);
 	}
 
 	render() {
@@ -30,6 +31,12 @@ class Ecosystem extends Component {
 			</div>
 		);
 	}
+}
+
+Ecosystem.propTypes = {
+	fish: PropTypes.array,
+	netRadius: PropTypes.number,
+	onNet: PropTypes.func
 }
 
 export default Ecosystem;

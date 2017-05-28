@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Ecosystem from './ecosystem';
+import TopBar from './topbar';
+import Meter from './meter';
 import Time from './time';
 import rand from './rand';
 import gaussian from 'gaussian';
@@ -11,6 +13,7 @@ const BASE_MULTIPLIER = 100;
 const GAUSS_MEAN = 66;
 const GAUSS_VAR = (12)**2;
 const INIT_FISH = 45;
+const NET_RADIUS = 200;
 
 class Game extends Component {
 	constructor(props) {
@@ -31,7 +34,6 @@ class Game extends Component {
 		this.reproduce = this.reproduce.bind(this);
 		this.generateFish = this.generateFish.bind(this);
 		this.removeFishInRadius = this.removeFishInRadius.bind(this);
-		this.renderGameTime = this.renderGameTime.bind(this);
 		this.gameScore = this.gameScore.bind(this);
 		this.calcPercentage = this.calcPercentage.bind(this);
 		this.fishHeight = this.fishHeight.bind(this);
@@ -102,12 +104,6 @@ class Game extends Component {
 		this.setState({ fish });
 	}
 
-	renderGameTime(num) {
-		let minutes = Math.floor(num / 60);
-		let seconds = num % 60;
-		return `${minutes}:${(seconds <= 9 ? '0' : '') + seconds}`;
-	}
-
 	gameScore(){
 		let percentage = this.calcPercentage();
 		let deltaScore = Math.round((1.0 - (Math.abs(0.5 - percentage) * 2)) * BASE_MULTIPLIER);
@@ -125,35 +121,19 @@ class Game extends Component {
 
 	fishHeight(){
 		let perc = 1.0 - this.calcPercentage();
-		console.log("perc:", perc)
 		let heightPerc = Math.round(perc * 95);
 
 		return heightPerc + "%"
 	}
 
 	render() {
-		console.log("num fish:", this.state.fish.length)
-		console.log("score:", this.state.score)
 		return (
-			<div style={{ width: '100%', height: '100%' }}>
-				<div id="top-bar">
-					<div id="game-time-container">
-						<img id="shell-icon" src="assets/shell.png" />
-						<div id="game-time">{ this.renderGameTime(this.state.time) }</div>
-					</div>
-					<div id="game-score">{ this.state.score }</div>
-				</div>
-				<div id="sidebar" className="clearfix">
-					<div id="sustainability-meter">
-						<div id="meter-color"></div>
-					</div>
-					<div id="indicator" style={{ top: this.fishHeight() }}>
-						<img src="assets/fish_indicator.png" />
-						<div id="points">+{ this.state.delta }</div>
-					</div>
-				</div>
+			<div id="game">
+				<TopBar score={this.state.score} time={this.state.time} />
+				<Meter delta={this.state.delta} offset={this.fishHeight()} />
 				<Ecosystem fish={this.state.fish}
-					removeFishInRadius={this.removeFishInRadius} />
+					netRadius={NET_RADIUS}
+					onNet={this.removeFishInRadius} />
 			</div>
 		);
 	}

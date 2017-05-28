@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class Fish extends Component {
-	constructor(props) {
-		super(props); 
-	}
+const Fish = function(props) {
+	let { x, y, index } = props;
 
-	render() {
-		let { x, y, index } = this.props;
+	return (
+		<div className={`fish-${index} clearfix`}
+			style={{ position: 'absolute', top: y, left: x }}>
+			<img src='assets/clownfish.png' /> 	
+		</div>
+	);
+}
 
-		return (
-			<div className={`fish-${index} clearfix`}
-				style={{ position: 'absolute', top: y, left: x }}>
-				<img src='assets/clownfish.png' /> 	
-			</div>
-		);
-	}
+Fish.propTypes = {
+	x: PropTypes.number,
+	y: PropTypes.number,
+	index: PropTypes.number
 }
 
 export default Fish;

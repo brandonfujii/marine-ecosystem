@@ -3,7 +3,7 @@
   display: table;
   content: ""; }
 
-html, body, #app, #ecosystem {
+html, body, #app, #game, #ecosystem {
   height: 100%;
   width: 100%;
   margin: 0;
