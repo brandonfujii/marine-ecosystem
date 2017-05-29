@@ -14,6 +14,8 @@ const Meter = function(props) {
 				<img src="assets/fish_indicator.png" />
 				<div id="points">+{ delta }</div>
 			</div>
+			<div id="meter-label" style={{top: '10px'}}>Overpopulation</div>
+			<div id="meter-label" style={{bottom: '1px'}}>Underpopulation</div>
 		</div>
 	);
 }

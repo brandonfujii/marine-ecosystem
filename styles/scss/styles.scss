@@ -212,6 +212,16 @@ div[class*=fish-] > img {
 	transition: opacity 1s ease-in-out;
 }
 
+#meter-label {
+	position: absolute;
+	height: 50px;
+	left: 65px;
+
+	font-size: 20px;
+	font-weight: 700;
+	color: #fff;
+}
+
 /* Underwater effect - Nick Pearson */
 
 body {

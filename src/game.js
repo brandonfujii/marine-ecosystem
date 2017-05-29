@@ -12,14 +12,13 @@ import EndScreen from './endscreen'
 import rand from './rand';
 import gaussian from 'gaussian';
 
-const END_TIME_SECONDS = 60;
+const END_TIME_SECONDS = 80;
 const DOUBLING_RATE = 15;
 const ARENA_OFFSET = 200;
 const BASE_MULTIPLIER = 100;
 const GAUSS_MEAN = 66;
 const GAUSS_VAR = (12)**2;
-// const INIT_FISH = 45;
-const INIT_FISH = 5;
+const INIT_FISH = 45;
 const NET_RADIUS = 200;
 
 class Game extends Component {
