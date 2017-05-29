@@ -11644,12 +11644,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Time = function () {
-	function Time(endTime, onTick, onFinish) {
+	function Time(time, onTick, onFinish) {
 		_classCallCheck(this, Time);
 
 		this.timer = null;
-		this.counter = 0;
-		this.endTime = endTime;
+		this.counter = time;
+		this.endTime = 0;
 		this.isPaused = false;
 
 		this.start = this.start.bind(this);
@@ -11674,9 +11674,9 @@ var Time = function () {
 	}, {
 		key: 'tick',
 		value: function tick() {
-			if (this.counter < this.endTime) {
+			if (this.counter > this.endTime) {
 				if (!this.isPaused) {
-					var count = ++this.counter;
+					var count = --this.counter;
 					if (this.onTick != undefined && this.onTick != null) this.onTick(count);
 				}
 			} else {
