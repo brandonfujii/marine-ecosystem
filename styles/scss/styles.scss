@@ -204,6 +204,14 @@ div[class*=fish-] > img {
 	font-weight: 700;
 }
 
+#net-circle {
+	position: absolute;
+	background-color: red;
+	-webkit-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+}
+
 /* Underwater effect - Nick Pearson */
 
 body {
@@ -214,7 +222,7 @@ body {
 .waves {
 	width:100%;
 	height:25vh;
-  	min-height:10em;
+  min-height:10em;
 	position:fixed;
 	overflow:hidden;
 }
