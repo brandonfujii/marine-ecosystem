@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import PropTypes from 'prop-types';
 
 class Modal extends Component {
 	constructor(props) {
@@ -25,6 +26,13 @@ class Modal extends Component {
 			</ReactModal>
 		);
 	}
+}
+
+Modal.propTypes = {
+	changeModal: PropTypes.func,
+	actionFunction: PropTypes.actionFunction,
+	isOpen: PropTypes.bool,
+	actionText: PropTypes.string
 }
 
 export default Modal;
