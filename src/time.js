@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class Time {
-	constructor(endTime, onTick, onFinish) {
+	constructor(time, onTick, onFinish) {
 		this.timer = null;
-		this.counter = 0;
-		this.endTime = endTime;
+		this.counter = time;
+		this.endTime = 0;
 		this.isPaused = false;
 
 		this.start = this.start.bind(this);
@@ -25,10 +25,9 @@ class Time {
 	}
 
 	tick() {
-		console.log("is paused: ", this.isPaused)
-		if (this.counter < this.endTime) {
-			if(!this.isPaused){
-				let count = ++this.counter;
+		if (this.counter > this.endTime) {
+			if (!this.isPaused) {
+				let count = --this.counter;
 				if (this.onTick != undefined && this.onTick != null) this.onTick(count);
 			}
 		} else {
