@@ -1,8 +1,8 @@
 # Overfishing Game
 
 ### TODO:
-	[] Start and end game screens
-	[] Invert time
+	[x] Start and end game screens
+	[x] Invert time
 	[] Translucent red radius for net clicks
 	[] Facts and prompts
 
