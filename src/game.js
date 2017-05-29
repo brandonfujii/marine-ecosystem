@@ -6,6 +6,7 @@ import TopBar from './topbar';
 import Meter from './meter';
 import Time from './time';
 import StartScreen from './startscreen';
+import InstructScreen from './instructscreen'
 
 import rand from './rand';
 import gaussian from 'gaussian';
@@ -13,7 +14,7 @@ import gaussian from 'gaussian';
 const END_TIME_SECONDS = 80;
 const DOUBLING_RATE = 15;
 const ARENA_OFFSET = 200;
-const BASE_MULTIPLIER = 100; 
+const BASE_MULTIPLIER = 100;
 const GAUSS_MEAN = 66;
 const GAUSS_VAR = (12)**2;
 const INIT_FISH = 45;
@@ -27,7 +28,7 @@ class Game extends Component {
 			gameTime: null,
 			time: null,
 			score: null,
-			fish: [], 
+			fish: [],
 			gDist: null,
 			delta: 0.0,
 			modal: "start"
@@ -43,6 +44,8 @@ class Game extends Component {
 		this.calcPercentage = this.calcPercentage.bind(this);
 		this.fishHeight = this.fishHeight.bind(this);
 		this.changeModal = this.changeModal.bind(this);
+		this.togglePause = this.togglePause.bind(this);
+		this.showInstruct = this.showInstruct.bind(this);
 	}
 
 	initializeGame() {
@@ -128,8 +131,10 @@ class Game extends Component {
 		return heightPerc + "%"
 	}
 
-	onPause(pausedBool) {
- 		this.state.gameTime.pause(pausedBool);
+	togglePause() {
+		if(this.state.gameTime != null){
+			this.state.gameTime.pause();
+		}
  	}
 
 	changeModal(modalState) {
@@ -138,19 +143,30 @@ class Game extends Component {
 		});
 	}
 
+	showInstruct() {
+		this.togglePause();
+		this.changeModal("instruct");
+	}
+
 	render() {
 		return (
 			<div id="game">
-				<StartScreen 
+				<StartScreen
 					isOpen={this.state.modal === "start"}
 					actionText="Start"
 					actionFunction={this.initializeGame}
 					changeModal={this.changeModal} />
+				<InstructScreen
+					isOpen={this.state.modal === "instruct"}
+					actionText="Close"
+					actionFunction={this.togglePause}
+					changeModal={this.changeModal}/>
 				<TopBar score={this.state.score} time={this.state.time} />
 				<Meter delta={this.state.delta} offset={this.fishHeight()} />
 				<Ecosystem fish={this.state.fish}
 					netRadius={NET_RADIUS}
 					onNet={this.removeFishInRadius} />
+				<div id="instruct-button" onClick={this.showInstruct}><img src="assets/questionmark.png" /></div>
 			</div>
 		);
 	}

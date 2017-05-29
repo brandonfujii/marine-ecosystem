@@ -16,7 +16,7 @@ class Modal extends Component {
 
 	render() {
 		return (
-			<ReactModal isOpen={this.props.isOpen} 
+			<ReactModal isOpen={this.props.isOpen}
 					contentLabel="game-modal"
 					portalClassName="modal-portal"
   					overlayClassName="modal-overlay" >
@@ -30,7 +30,7 @@ class Modal extends Component {
 
 Modal.propTypes = {
 	changeModal: PropTypes.func,
-	actionFunction: PropTypes.actionFunction,
+	actionFunction: PropTypes.func,
 	isOpen: PropTypes.bool,
 	actionText: PropTypes.string
 }

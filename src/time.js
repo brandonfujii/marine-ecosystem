@@ -25,19 +25,22 @@ class Time {
 	}
 
 	tick() {
-		if (this.counter < this.endTime  && !this.isPaused) {
-			let count = ++this.counter;
-			if (this.onTick != undefined && this.onTick != null) this.onTick(count);
+		console.log("is paused: ", this.isPaused)
+		if (this.counter < this.endTime) {
+			if(!this.isPaused){
+				let count = ++this.counter;
+				if (this.onTick != undefined && this.onTick != null) this.onTick(count);
+			}
 		} else {
 			if (this.onFinish != undefined && this.onFinish != null) this.onFinish(this.counter);
 		}
 	}
 
-	pause(pausedBool) {
- 		this.isPaused = pausedBool;
+	pause() {
+ 		this.isPaused = !this.isPaused;
  	}
- 
-	
+
+
 	getTimeInSeconds() {
 		return this.counter;
 	}

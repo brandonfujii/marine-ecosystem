@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from './modal';
 
-class StartScreen extends Component {
+class InstructScreen extends Component {
 	render() {
 		let { isOpen, actionText, actionFunction, changeModal } = this.props;
 		return (
@@ -12,10 +12,8 @@ class StartScreen extends Component {
 				changeModal={changeModal}>
 				<div id="start-screen">
 					<div>
-						<h1>Overfishing Simulation</h1>
-						<p>The Overfishing Simulation shows the impact of overfishing on the marine ecosystem. Factors such as overfishing and throwing plastic waste into the ocean devastate aquatic species and create environmental imbalance. The goal of this game is to figure out how to maintain sustainability by striking a balance between overfishing and under-fishing.</p>
+						<h1> Instructions</h1>
 						<div className="instructions">
-							<p>Instructions:</p>
 							<ol>
 								<li>Throw the nets onto the surface in order to catch fish.</li>
 								<li>The more nets you throw the more fish you catch.</li>
@@ -31,4 +29,4 @@ class StartScreen extends Component {
 	}
 }
 
-export default StartScreen;
+export default InstructScreen;
