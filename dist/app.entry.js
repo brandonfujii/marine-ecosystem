@@ -10949,6 +10949,10 @@ var _instructscreen = __webpack_require__(93);
 
 var _instructscreen2 = _interopRequireDefault(_instructscreen);
 
+var _endscreen = __webpack_require__(208);
+
+var _endscreen2 = _interopRequireDefault(_endscreen);
+
 var _rand = __webpack_require__(95);
 
 var _rand2 = _interopRequireDefault(_rand);
@@ -10965,7 +10969,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var END_TIME_SECONDS = 80;
+var END_TIME_SECONDS = 10;
 var DOUBLING_RATE = 15;
 var ARENA_OFFSET = 200;
 var BASE_MULTIPLIER = 100;
@@ -11014,7 +11018,8 @@ var Game = function (_Component) {
 				gameTime: new _time2.default(END_TIME_SECONDS, this.onGameTick, this.onGameOver),
 				time: 0,
 				score: 0,
-				gDist: (0, _gaussian2.default)(GAUSS_MEAN, GAUSS_VAR)
+				gDist: (0, _gaussian2.default)(GAUSS_MEAN, GAUSS_VAR),
+				fish: []
 			}, function () {
 				this.state.gameTime.start();
 				this.reproduce(INIT_FISH);
@@ -11035,6 +11040,7 @@ var Game = function (_Component) {
 		value: function onGameOver() {
 			console.log("Finished game");
 			this.state.gameTime.stop();
+			this.changeModal("end");
 			this.setState({
 				gameTime: null
 			});
@@ -11139,6 +11145,12 @@ var Game = function (_Component) {
 					actionText: 'Close',
 					actionFunction: this.togglePause,
 					changeModal: this.changeModal }),
+				_react2.default.createElement(_endscreen2.default, {
+					isOpen: this.state.modal === "end",
+					actionText: 'Play Again',
+					actionFunction: this.initializeGame,
+					changeModal: this.changeModal,
+					score: this.state.score }),
 				_react2.default.createElement(_topbar2.default, { score: this.state.score, time: this.state.time }),
 				_react2.default.createElement(_meter2.default, { delta: this.state.delta, offset: this.fishHeight() }),
 				_react2.default.createElement(_ecosystem2.default, { fish: this.state.fish,
@@ -11362,7 +11374,7 @@ var InstructScreen = function (_Component) {
 					changeModal: changeModal },
 				_react2.default.createElement(
 					'div',
-					{ id: 'start-screen' },
+					{ id: 'instruct-screen' },
 					_react2.default.createElement(
 						'div',
 						null,
@@ -11650,19 +11662,18 @@ var Time = function () {
 	}
 
 	_createClass(Time, [{
-		key: "start",
+		key: 'start',
 		value: function start() {
 			this.timer = setInterval(this.tick, 1000);
 		}
 	}, {
-		key: "stop",
+		key: 'stop',
 		value: function stop() {
 			clearInterval(this.timer);
 		}
 	}, {
-		key: "tick",
+		key: 'tick',
 		value: function tick() {
-			console.log("is paused: ", this.isPaused);
 			if (this.counter < this.endTime) {
 				if (!this.isPaused) {
 					var count = ++this.counter;
@@ -11673,12 +11684,12 @@ var Time = function () {
 			}
 		}
 	}, {
-		key: "pause",
+		key: 'pause',
 		value: function pause() {
 			this.isPaused = !this.isPaused;
 		}
 	}, {
-		key: "getTimeInSeconds",
+		key: 'getTimeInSeconds',
 		value: function getTimeInSeconds() {
 			return this.counter;
 		}
@@ -25328,6 +25339,98 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _modal = __webpack_require__(54);
+
+var _modal2 = _interopRequireDefault(_modal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EndScreen = function (_Component) {
+	_inherits(EndScreen, _Component);
+
+	function EndScreen() {
+		_classCallCheck(this, EndScreen);
+
+		return _possibleConstructorReturn(this, (EndScreen.__proto__ || Object.getPrototypeOf(EndScreen)).apply(this, arguments));
+	}
+
+	_createClass(EndScreen, [{
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    isOpen = _props.isOpen,
+			    actionText = _props.actionText,
+			    actionFunction = _props.actionFunction,
+			    changeModal = _props.changeModal,
+			    score = _props.score;
+
+			return _react2.default.createElement(
+				_modal2.default,
+				{
+					isOpen: isOpen,
+					actionText: actionText,
+					actionFunction: actionFunction,
+					changeModal: changeModal },
+				_react2.default.createElement(
+					'div',
+					{ id: 'end-screen' },
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h1',
+							null,
+							' Game Over'
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							' Overfishing is when more fish are caught than reproduction can replace. Gathering as many fish as possible may seem like a good idea but overfishing has many serious consequences. It can mean that there will no fish left, which can harm several oceanic ecosystems. The World Wildlife Fund says that there was a dramatic fall of 74% in worldwide stocks of important fish like mackerel, tuna and bonitos between 1970 and 2010.'
+						),
+						_react2.default.createElement(
+							'div',
+							{ id: 'go-score-container' },
+							'Score',
+							_react2.default.createElement(
+								'div',
+								{ id: 'game-over-your-score' },
+								this.props.score
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return EndScreen;
+}(_react.Component);
+
+exports.default = EndScreen;
 
 /***/ })
 /******/ ]);

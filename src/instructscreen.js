@@ -10,7 +10,7 @@ class InstructScreen extends Component {
 				actionText={actionText}
 				actionFunction={actionFunction}
 				changeModal={changeModal}>
-				<div id="start-screen">
+				<div id="instruct-screen">
 					<div>
 						<h1> Instructions</h1>
 						<div className="instructions">

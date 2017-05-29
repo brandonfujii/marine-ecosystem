@@ -7,11 +7,12 @@ import Meter from './meter';
 import Time from './time';
 import StartScreen from './startscreen';
 import InstructScreen from './instructscreen'
+import EndScreen from './endscreen'
 
 import rand from './rand';
 import gaussian from 'gaussian';
 
-const END_TIME_SECONDS = 80;
+const END_TIME_SECONDS = 10;
 const DOUBLING_RATE = 15;
 const ARENA_OFFSET = 200;
 const BASE_MULTIPLIER = 100;
@@ -53,7 +54,8 @@ class Game extends Component {
 			gameTime: new Time(END_TIME_SECONDS, this.onGameTick, this.onGameOver),
 			time: 0,
 			score: 0,
-			gDist: gaussian(GAUSS_MEAN, GAUSS_VAR)
+			gDist: gaussian(GAUSS_MEAN, GAUSS_VAR),
+			fish: []
 		}, function() {
 			this.state.gameTime.start();
 			this.reproduce(INIT_FISH);
@@ -72,8 +74,9 @@ class Game extends Component {
 	onGameOver() {
 		console.log("Finished game");
 		this.state.gameTime.stop();
+		this.changeModal("end");
 		this.setState({
-			gameTime: null
+			gameTime: null,
 		});
 	}
 
@@ -161,6 +164,12 @@ class Game extends Component {
 					actionText="Close"
 					actionFunction={this.togglePause}
 					changeModal={this.changeModal}/>
+				<EndScreen
+					isOpen={this.state.modal === "end"}
+					actionText="Play Again"
+					actionFunction={this.initializeGame}
+					changeModal={this.changeModal}
+					score={this.state.score}/>
 				<TopBar score={this.state.score} time={this.state.time} />
 				<Meter delta={this.state.delta} offset={this.fishHeight()} />
 				<Ecosystem fish={this.state.fish}

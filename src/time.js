@@ -25,7 +25,6 @@ class Time {
 	}
 
 	tick() {
-		console.log("is paused: ", this.isPaused)
 		if (this.counter < this.endTime) {
 			if(!this.isPaused){
 				let count = ++this.counter;
