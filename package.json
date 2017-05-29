@@ -22,6 +22,7 @@
     "prop-types": "15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",
+    "react-modal": "1.7.7",
     "sass-loader": "6.0.5",
     "style-loader": "0.18.1",
     "webpack": "2.6.1"

@@ -109,6 +109,43 @@ div[class*=fish-] > img {
     color: #fff;
     display: inline-block; }
 
+.ReactModal__Content {
+  color: #444;
+  width: 45%;
+  min-width: 300px;
+  height: 55%;
+  min-height: 350px;
+  position: absolute;
+  top: 48% !important;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin: 0 auto;
+  z-index: 9999;
+  text-align: center; }
+  .ReactModal__Content p {
+    line-height: 1.5; }
+  .ReactModal__Content .action-button {
+    cursor: pointer;
+    font-size: 2em;
+    color: #fff;
+    padding: 15px 20px;
+    margin: 1%;
+    width: 98%;
+    background: #ce2b6d;
+    border: 0;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    bottom: 0; }
+    .ReactModal__Content .action-button:hover {
+      background: #b92762; }
+  .ReactModal__Content .instructions {
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.5; }
+
 /* Underwater effect - Nick Pearson */
 body {
   background: #002040; }

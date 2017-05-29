@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import ReactModal from 'react-modal';
+
 import Ecosystem from './ecosystem';
 import TopBar from './topbar';
 import Meter from './meter';
 import Time from './time';
+import StartScreen from './startscreen';
+
 import rand from './rand';
 import gaussian from 'gaussian';
 
@@ -25,7 +29,8 @@ class Game extends Component {
 			score: null,
 			fish: [], 
 			gDist: null,
-			delta: 0.0
+			delta: 0.0,
+			modal: "start"
 		};
 
 		this.initializeGame = this.initializeGame.bind(this);
@@ -37,10 +42,7 @@ class Game extends Component {
 		this.gameScore = this.gameScore.bind(this);
 		this.calcPercentage = this.calcPercentage.bind(this);
 		this.fishHeight = this.fishHeight.bind(this);
-	}
-
-	componentDidMount() {
-		this.initializeGame();
+		this.changeModal = this.changeModal.bind(this);
 	}
 
 	initializeGame() {
@@ -126,9 +128,24 @@ class Game extends Component {
 		return heightPerc + "%"
 	}
 
+	onPause(pausedBool) {
+ 		this.state.gameTime.pause(pausedBool);
+ 	}
+
+	changeModal(modalState) {
+		this.setState({
+			modal: modalState
+		});
+	}
+
 	render() {
 		return (
 			<div id="game">
+				<StartScreen 
+					isOpen={this.state.modal === "start"}
+					actionText="Start"
+					actionFunction={this.initializeGame}
+					changeModal={this.changeModal} />
 				<TopBar score={this.state.score} time={this.state.time} />
 				<Meter delta={this.state.delta} offset={this.fishHeight()} />
 				<Ecosystem fish={this.state.fish}
